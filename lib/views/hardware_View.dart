@@ -66,7 +66,9 @@ class _HardwareViewState extends State<HardwareView> {
 
   void _addTextField(int cardIndex) {
     setState(() {
-      cardControllersList[cardIndex].add(TextEditingController());
+      for (int i = 0; i < 2; i++) {
+        cardControllersList[cardIndex].add(TextEditingController());
+      }
     });
   }
 
@@ -87,33 +89,8 @@ class _HardwareViewState extends State<HardwareView> {
     for (int i = 0; i < numberOfCards; i++) {
       List<TableRow> tableRows = [];
 
-      tableRows.add(
-        TableRow(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                _addTextField(i);
-              },
-              child: Text('Agregar Campo'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _addTextField(i);
-              },
-              child: Text('Agregar Campo'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _addTextField(i);
-              },
-              child: Text('Agregar Campo'),
-            ),
-          ],
-        ),
-      );
-
       if (cardControllersList[i].isNotEmpty) {
-        // Agrega los TextField a la tabla
+        // Agrega los TextField y SizedBox a la tabla
         for (int j = 0; j < cardControllersList[i].length; j++) {
           tableRows.add(
             TableRow(
@@ -122,19 +99,19 @@ class _HardwareViewState extends State<HardwareView> {
                   controller: cardControllersList[i][j],
                   labelText: 'Campo 1 en Card $i',
                 ),
-                MyCustomWidget(
-                  controller: cardControllersList[i][j + 1], // Controlador separado para cada campo
-                  labelText: 'Campo 2 en Card $i',
+                SizedBox(
+                  width: responsiveApp.wp(3),
                 ),
                 MyCustomWidget(
-                  controller: cardControllersList[i][j + 2], // Controlador separado para cada campo
-                  labelText: 'Campo 3 en Card $i',
+                  controller: cardControllersList[i]
+                      [j + 1], // Controlador separado para cada campo
+                  labelText: 'Campo 2 en Card $i',
                 ),
               ],
             ),
           );
           // Saltar al siguiente conjunto de 3 controladores
-          j += 2;
+          j += 1;
         }
       }
 
@@ -148,7 +125,7 @@ class _HardwareViewState extends State<HardwareView> {
                 child: Table(
                   columnWidths: {
                     0: FlexColumnWidth(2),
-                    1: FlexColumnWidth(0.3),
+                    1: FlexColumnWidth(1),
                     2: FlexColumnWidth(2),
                   },
                   children: [
