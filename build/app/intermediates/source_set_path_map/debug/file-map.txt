@@ -1,0 +1,12 @@
+pe.gob.regionlalibertad.app_inventario.app-jetified-window-1.0.0-beta04-0 C:\Users\dev3\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\res
+pe.gob.regionlalibertad.app_inventario.app-jetified-annotation-experimental-1.1.0-1 C:\Users\dev3\.gradle\caches\transforms-3\6c0c163cc77ae6c91f9f7dfcd179c29c\transformed\jetified-annotation-experimental-1.1.0\res
+pe.gob.regionlalibertad.app_inventario.app-core-1.6.0-2 C:\Users\dev3\.gradle\caches\transforms-3\7e9df2ac2213a6bd3cef0f2f27870d79\transformed\core-1.6.0\res
+pe.gob.regionlalibertad.app_inventario.app-jetified-window-java-1.0.0-beta04-3 C:\Users\dev3\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\res
+pe.gob.regionlalibertad.app_inventario.app-debug-4 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\android\app\src\debug\res
+pe.gob.regionlalibertad.app_inventario.app-main-5 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\android\app\src\main\res
+pe.gob.regionlalibertad.app_inventario.app-pngs-6 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\build\app\generated\res\pngs\debug
+pe.gob.regionlalibertad.app_inventario.app-resValues-7 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\build\app\generated\res\resValues\debug
+pe.gob.regionlalibertad.app_inventario.app-rs-8 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\build\app\generated\res\rs\debug
+pe.gob.regionlalibertad.app_inventario.app-mergeDebugResources-9 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+pe.gob.regionlalibertad.app_inventario.app-mergeDebugResources-10 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+pe.gob.regionlalibertad.app_inventario.app-merged_res-11 C:\Users\dev3\Documents\Nat\proyetos\app_inventario\build\app\intermediates\merged_res\debug
