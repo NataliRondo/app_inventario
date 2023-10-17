@@ -4,7 +4,6 @@ import 'package:app_inventario/utils/colores.dart';
 import 'package:app_inventario/views/widget/botones.dart';
 import 'package:app_inventario/views/widget/CampoFila.dart';
 import 'package:app_inventario/views/widget/campo_Observacion.dart';
-import 'package:app_inventario/views/widget/campo_fila_Hardware.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/responsiveApp.dart';

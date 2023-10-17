@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "537941584866",
+    "project_id": "ejemplo-348d6",
+    "storage_bucket": "ejemplo-348d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537941584866:android:2c92f9c9a459a0c10b67bb",
+        "android_client_info": {
+          "package_name": "com.example.ejemplo_noty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537941584866-4471u4fml7cvlo5jpcla998hld51g0k0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgFRtyupmigOQirl-89QwjqsOvd_Xl1W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537941584866-4471u4fml7cvlo5jpcla998hld51g0k0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537941584866:android:a981a7bd14897f9e0b67bb",
+        "android_client_info": {
+          "package_name": "pe.gob.regionlalibertad.app_inventario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537941584866-4471u4fml7cvlo5jpcla998hld51g0k0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgFRtyupmigOQirl-89QwjqsOvd_Xl1W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537941584866-4471u4fml7cvlo5jpcla998hld51g0k0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

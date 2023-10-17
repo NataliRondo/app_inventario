@@ -15,6 +15,7 @@ class PantallaInicioView extends StatefulWidget {
 }
 
 class _PantallaInicioViewState extends State<PantallaInicioView> {
+  TextEditingController responsableController = TextEditingController();
   TextEditingController areaController = TextEditingController();
   TextEditingController trabajadorController = TextEditingController();
   TextEditingController nombreMaquinaController = TextEditingController();
@@ -50,6 +51,10 @@ class _PantallaInicioViewState extends State<PantallaInicioView> {
                 child: Column(
                   children: [
                     inputWidget(
+                      campo: "Responsable",
+                      controller: responsableController,
+                    ),
+                    inputWidget(
                       campo: "Área",
                       controller: areaController,
                     ),
@@ -80,11 +85,12 @@ class _PantallaInicioViewState extends State<PantallaInicioView> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => const HardwareView(
-                              area: "",
-                              trabajador: "",
-                              nombreMaquina: "",
-                              usuarioMaquina: "",
+                            builder: (context) => HardwareView(
+                              responsable: responsableController.text,
+                              area: areaController.text,
+                              trabajador: trabajadorController.text,
+                              nombreMaquina: nombreMaquinaController.text,
+                              usuarioMaquina: usuarioMaquinaController.text,
                             ),
                           ),
                         );
@@ -100,11 +106,12 @@ class _PantallaInicioViewState extends State<PantallaInicioView> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => const SoftwareView(
-                              area: "",
-                              trabajador: "",
-                              nombreMaquina: "",
-                              usuarioMaquina: "",
+                            builder: (context) => SoftwareView(
+                              responsable: responsableController.text,
+                              area: areaController.text,
+                              trabajador: trabajadorController.text,
+                              nombreMaquina: nombreMaquinaController.text,
+                              usuarioMaquina: usuarioMaquinaController.text,
                             ),
                           ),
                         );

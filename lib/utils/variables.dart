@@ -1,9 +1,12 @@
 import 'dart:math';
 import 'package:app_inventario/utils/responsiveApp.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 // ignore: import_of_legacy_library_into_null_safe
+
+DatabaseReference dtRef = FirebaseDatabase.instance.ref();
 
 TextStyle estilos(ResponsiveApp responsiveApp, double num, Color color,
     FontWeight font, FontStyle style) {

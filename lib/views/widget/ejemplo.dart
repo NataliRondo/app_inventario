@@ -1,11 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print
+
 import 'package:app_inventario/utils/responsiveApp.dart';
-import 'package:app_inventario/views/widget/CampoFila.dart';
-import 'package:app_inventario/views/widget/campo_Observacion.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/variables.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -18,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ResponsiveApp responsiveApp = ResponsiveApp(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Card Demo shsfhjjhsfsfjh'),
+        title: const Text('Flutter Card Demo shsfhjjhsfsfjh'),
       ),
       body: GestureDetector(
         onTap: () {
@@ -65,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   });
                 }
               },
-              child: Text('Agregar Tarjeta'),
+              child: const Text('Agregar Tarjeta'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -91,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Texto en el procesadorController: ${item.procesadorController.text}');
                 }
               },
-              child: Text('Guardar Información'),
+              child: const Text('Guardar Información'),
             ),
           ],
         ),
@@ -119,16 +120,16 @@ class _ItemsState extends State<Items> {
   int rowCount = 1; // Inicializamos con una fila
   Widget buildCard() {
     return Card(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             for (int i = 1; i <= rowCount; i++)
               Row(
                 children: [
                   Text('Campo $i:'),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
                       controller: i == 1
@@ -149,7 +150,7 @@ class _ItemsState extends State<Items> {
                   rowCount++; // Agregar una fila cuando se presiona el botón
                 });
               },
-              child: Text('Agregar Fila'),
+              child: const Text('Agregar Fila'),
             ),
           ],
         ),
@@ -184,16 +185,16 @@ class CardItem {
   CardItem({this.responsiveApp, this.texto});
   Widget buildCard() {
     return Card(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             for (int i = 1; i <= rowCount; i++)
               Row(
                 children: [
                   Text('Campo $i:'),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
                       controller: i == 1
@@ -213,7 +214,7 @@ class CardItem {
                   rowCount++; // Agregar una fila cuando se presiona el botón
                 });*/
               },
-              child: Text('Agregar Fila'),
+              child: const Text('Agregar Fila'),
             ),
           ],
         ),
