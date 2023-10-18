@@ -9,7 +9,7 @@ class ModernButton extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData iconData;
 
-  const ModernButton({required this.text, required this.onPressed, required this.iconData});
+  const ModernButton({super.key, required this.text, required this.onPressed, required this.iconData});
 
   @override
   Widget build(BuildContext context) {

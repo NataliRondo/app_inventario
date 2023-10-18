@@ -1,7 +1,5 @@
 // ignore_for_file: file_names, avoid_print
 
-import 'dart:convert';
-
 import 'package:app_inventario/models/software.dart';
 import 'package:app_inventario/views/widget/CampoFila.dart';
 import 'package:app_inventario/views/widget/botones.dart';
@@ -225,23 +223,18 @@ class _SoftwareViewState extends State<SoftwareView> {
                       autocad: autoCadController.text,
                       extras: data.toString(),
                     );
-                    Map<String, dynamic> datos = {
+                    /*Map<String, dynamic> datos = {
                       "responsable": widget.responsable,
                       "area": widget.area,
                       "trabajador": widget.trabajador,
                       "nombreMaquina": widget.nombreMaquina,
                       "usuarioMaquina": widget.usuarioMaquina,
                       "datos": software.toJson()
-                    };
+                    };*/
 
-                    String jsonData = jsonEncode(datos);
-                    print(jsonData);
-                    dtRef.child("Software").push().set(datos).then(
-                      (value) {
-                        Navigator.of(context).pop();
-                        FocusScope.of(context).unfocus();
-                      },
-                    );
+                    var datosObtenidos = software.toJson();
+                    Navigator.of(context).pop(datosObtenidos);
+                    FocusScope.of(context).unfocus();
                   }
                 },
                 child: const Text(

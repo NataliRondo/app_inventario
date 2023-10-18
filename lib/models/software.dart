@@ -23,7 +23,7 @@ class Software {
     this.extras,
   });
 
-  factory Software.fromJson(Map<String, dynamic> json) => Software(
+  factory Software.fromJson(Map<dynamic, dynamic> json) => Software(
         sistema: json["Sistema"],
         antivirus: json["Antivirus"],
         office: json["Office"],

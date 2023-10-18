@@ -44,11 +44,8 @@ class _HardwareViewState extends State<HardwareView> {
   List<TextEditingController> marcaController = [];
   List<TextEditingController> memoriaController = [];
 
-  
   Hardware hardware = Hardware();
   List<Hardware> hardwareLista = [];
-
-  List<String> data = [];
 
   int numberOfCards = 1; // Variable para rastrear la cantidad de cards
 
@@ -326,6 +323,9 @@ class _HardwareViewState extends State<HardwareView> {
                     );
                   } else {
                     for (int i = 0; i < controllers.length; i++) {
+                      List<String> data =
+                          []; // Crea una lista nueva para cada hardware
+
                       for (int j = 0;
                           j < cardCampo1Controllers[i].length;
                           j++) {
@@ -342,6 +342,7 @@ class _HardwareViewState extends State<HardwareView> {
                         procesador: procesadorController[i].text,
                         campos: data.toString(),
                       );
+
                       if (i == 0) {
                         hardware = Hardware(
                             hardware: "Case",
@@ -370,28 +371,29 @@ class _HardwareViewState extends State<HardwareView> {
                       }
 
                       hardwareLista.add(hardware);
-                      //hardwareMap[hardware.hardware] = hardware;
                     }
+                    var jsonLista =
+                        hardwareLista.map((e) => e.toJson()).toList();
 
-                    Map<String, dynamic> datos = {
-                      "responsable": widget.responsable,
-                      "area": widget.area,
-                      "trabajador": widget.trabajador,
-                      "nombreMaquina": widget.nombreMaquina,
-                      "usuarioMaquina": widget.usuarioMaquina,
-                      "hardware": hardwareLista
-                          .map((hardware) => hardware.toJson())
-                          .toList()
+                    Map<String, dynamic> registroMap = {
+                      'area': widget.area,
+                      'nombreMaquina': widget.nombreMaquina,
+                      'responsable': widget.responsable,
+                      'trabajador': widget.trabajador,
+                      'usuarioMaquina': widget.usuarioMaquina,
+                      'hardwareLista': jsonLista,
                     };
 
-                    String jsonData = jsonEncode(datos);
-                    print(jsonData);
-                    /**/ dtRef.child("Hardware").push().set(datos).then(
+                    String jsonString = json.encode(registroMap);
+                    print(jsonString);
+                    /*  dtRef.child("Hardware").push().set(registroMap).then(
                       (value) {
-                        Navigator.of(context).pop();
-                        FocusScope.of(context).unfocus();
+                        
+                        
                       },
-                    );
+                    );*/
+                    Navigator.of(context).pop(jsonLista);
+                    FocusScope.of(context).unfocus();
                   }
                 },
               )

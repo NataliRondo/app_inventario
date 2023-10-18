@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:app_inventario/utils/responsiveApp.dart';
 import 'package:app_inventario/utils/variables.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +39,7 @@ class inputWidget extends StatelessWidget {
         SizedBox(
           height: responsiveApp.hp(5),
           width: responsiveApp.wp(3),
-          child: Text(":"),
+          child: const Text(":"),
         ),
         SizedBox(
           height: responsiveApp.hp(6),
