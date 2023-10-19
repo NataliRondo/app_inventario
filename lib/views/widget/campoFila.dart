@@ -43,6 +43,7 @@ class CampoFila extends StatelessWidget {
           SizedBox(
             height: responsiveApp.hp(6),
             child: TextField(
+              textCapitalization: TextCapitalization.characters,
               controller: controller,
             ),
           ),

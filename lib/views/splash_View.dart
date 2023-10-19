@@ -1,7 +1,7 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
 import 'dart:async';
-import 'package:app_inventario/views/pantalla_inicio_view.dart';
+import 'package:app_inventario/views/inventario_View.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -28,7 +28,7 @@ class _SplashViewState extends State<SplashView> {
     Navigator.of(context).pushReplacement(
       //new
       MaterialPageRoute(
-        builder: (context) => const PantallaInicioView(),
+        builder: (context) => const InventarioView(),
       ),
     );
   }

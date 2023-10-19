@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 
+import 'package:app_inventario/utils/guardarExcel.dart';
 import 'package:app_inventario/views/inventario_detalle.dart';
+import 'package:app_inventario/views/registro_view.dart';
+import 'package:app_inventario/views/widget/botones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,14 +40,46 @@ class _InventarioViewState extends State<InventarioView> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
-          'Inventario Completo',
+          'Inventario',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: AzulApp,
       ),
+      floatingActionButton: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(AzulApp),
+        ),
+        onPressed: () async {
+          final registro = await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const RegistroView(),
+            ),
+          );
+
+          if (registro != null) {
+            obtenerDatosSoftware();
+          }
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       body: SingleChildScrollView(
         child: inventarioLista!.isEmpty
-            ? Container()
+            ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Center(
+                        child: Text("No hay datos"),
+                      ),
+                    ),
+                  ),
+                ),
+              )
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -89,6 +124,14 @@ class _InventarioViewState extends State<InventarioView> {
                 ),
               ),
       ),
+      persistentFooterButtons: [
+        ModernButton(
+            text: "Exportar",
+            onPressed: () {
+              saveExcelFile(inventarioLista, context);
+            },
+            iconData: Icons.adf_scanner)
+      ],
     );
   }
 }

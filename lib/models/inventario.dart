@@ -2,6 +2,8 @@
 //
 //     final Inventario = InventarioFromJson(jsonString);
 
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:app_inventario/models/software.dart';
@@ -34,8 +36,8 @@ class Inventario {
   factory Inventario.fromJson(Map<dynamic, dynamic> json) {
     var hard = json["hardware"];
     var area = json["area"];
-    print(hard);
-    print(area);
+    //print(hard);
+    //print(area);
     return Inventario(
       responsable: json["responsable"],
       area: area,

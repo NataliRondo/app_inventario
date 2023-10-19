@@ -30,19 +30,18 @@ class HardwareView extends StatefulWidget {
 }
 
 class _HardwareViewState extends State<HardwareView> {
-  TextEditingController modeloController = TextEditingController();
-  TextEditingController discoDuroController = TextEditingController();
-  TextEditingController serieController = TextEditingController();
-  TextEditingController tarjVideoController = TextEditingController();
-
   List<TextEditingController> controllers = [];
   List<List<TextEditingController>> cardCampo1Controllers = [];
   List<List<TextEditingController>> cardCampo2Controllers = [];
   List<TextEditingController> observacionControllers = [];
   List<TextEditingController> patrimonialController = [];
   List<TextEditingController> procesadorController = [];
+  List<TextEditingController> modeloController = [];
+  List<TextEditingController> serieController = [];
   List<TextEditingController> marcaController = [];
   List<TextEditingController> memoriaController = [];
+  List<TextEditingController> discoController = [];
+  List<TextEditingController> tarjetaController = [];
 
   Hardware hardware = Hardware();
   List<Hardware> hardwareLista = [];
@@ -152,6 +151,24 @@ class _HardwareViewState extends State<HardwareView> {
                               children: [
                                 CampoFila(
                                   responsiveApp: responsiveApp,
+                                  campo: "Patrimonial",
+                                  controller: patrimonialController[index],
+                                ),
+                                SizedBox(
+                                  width: responsiveApp.wp(3),
+                                ),
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
+                                  campo: "Modelo",
+                                  controller: modeloController[index],
+                                ),
+                              ],
+                            ),
+                          if (index == 0)
+                            TableRow(
+                              children: [
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
                                   campo: "Marca",
                                   controller: marcaController[index],
                                 ),
@@ -164,9 +181,64 @@ class _HardwareViewState extends State<HardwareView> {
                                   controller: memoriaController[index],
                                 ),
                               ],
+                            )
+                          else
+                            TableRow(
+                              children: [
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
+                                  campo: "Marca",
+                                  controller: marcaController[index],
+                                ),
+                                SizedBox(
+                                  width: responsiveApp.wp(3),
+                                ),
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
+                                  campo: "Serie",
+                                  controller: serieController[index],
+                                ),
+                              ],
                             ),
 
                           // Agrega las filas personalizadas aquí
+
+                          if (index == 0)
+                            TableRow(
+                              children: [
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
+                                  campo: "Modelo",
+                                  controller: modeloController[index],
+                                ),
+                                SizedBox(
+                                  width: responsiveApp.wp(3),
+                                ),
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
+                                  campo: "Disco Duro",
+                                  controller: discoController[index],
+                                ),
+                              ],
+                            ),
+                          if (index == 0)
+                            TableRow(
+                              children: [
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
+                                  campo: "Serie",
+                                  controller: serieController[index],
+                                ),
+                                SizedBox(
+                                  width: responsiveApp.wp(3),
+                                ),
+                                CampoFila(
+                                  responsiveApp: responsiveApp,
+                                  campo: "Tarjeta de Video",
+                                  controller: tarjetaController[index],
+                                ),
+                              ],
+                            ),
                           for (int i = 0;
                               i < cardCampo1Controllers[index].length;
                               i++)
@@ -275,126 +347,80 @@ class _HardwareViewState extends State<HardwareView> {
                 iconData: Icons.save,
                 text: "Guardar",
                 onPressed: () {
-                  if (widget.responsable.isEmpty ||
-                      widget.area.isEmpty ||
-                      widget.trabajador.isEmpty ||
-                      widget.nombreMaquina.isEmpty ||
-                      widget.usuarioMaquina.isEmpty) {
-                    String camposFaltantes = "";
+                  for (int i = 0; i < controllers.length; i++) {
+                    List<String> data =
+                        []; // Crea una lista nueva para cada hardware
 
-                    if (widget.responsable.isEmpty) {
-                      camposFaltantes += 'Responsable, ';
-                    }
-                    if (widget.area.isEmpty) {
-                      camposFaltantes += 'Área, ';
-                    }
-                    if (widget.trabajador.isEmpty) {
-                      camposFaltantes += 'Trabajador, ';
-                    }
-                    if (widget.nombreMaquina.isEmpty) {
-                      camposFaltantes += 'Nombre de la Máquina, ';
-                    }
-                    if (widget.usuarioMaquina.isEmpty) {
-                      camposFaltantes += 'Usuario de la Máquina, ';
+                    for (int j = 0; j < cardCampo1Controllers[i].length; j++) {
+                      setState(() {
+                        String valor =
+                            "${cardCampo1Controllers[i][j].text}: ${cardCampo2Controllers[i][j].text}";
+                        data.add(
+                            valor); // Agrega campos a la lista específica del hardware
+                      });
                     }
 
-                    // Elimina la última coma y espacio
-                    camposFaltantes = camposFaltantes.substring(
-                        0, camposFaltantes.length - 2);
-
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Campo Vacío'),
-                          content: Text(
-                              'El campo "$camposFaltantes" no puede estar vacío.'),
-                          actions: <Widget>[
-                            ModernButton(
-                              text: "Ok",
-                              iconData: Icons.save,
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
+                    Contenido contenido = Contenido(
+                      patrimonial: patrimonialController[i].text,
+                      procesador: procesadorController[i].text,
+                      disco: discoController[i].text,
+                      marca: marcaController[i].text,
+                      memoria: memoriaController[i].text,
+                      modelo: modeloController[i].text,
+                      serie: serieController[i].text,
+                      tarjeta: tarjetaController[i].text,
+                      campos: data.toString(),
                     );
-                  } else {
-                    for (int i = 0; i < controllers.length; i++) {
-                      List<String> data =
-                          []; // Crea una lista nueva para cada hardware
 
-                      for (int j = 0;
-                          j < cardCampo1Controllers[i].length;
-                          j++) {
-                        setState(() {
-                          String valor =
-                              "'${cardCampo1Controllers[i][j].text}: ${cardCampo2Controllers[i][j].text}'";
-                          data.add(
-                              valor); // Agrega campos a la lista específica del hardware
-                        });
-                      }
-
-                      Contenido contenido = Contenido(
-                        patrimonial: patrimonialController[i].text,
-                        procesador: procesadorController[i].text,
-                        campos: data.toString(),
-                      );
-
-                      if (i == 0) {
-                        hardware = Hardware(
-                            hardware: "Case",
-                            contenido: contenido,
-                            observacion: observacionControllers[i].text);
-                      } else if (i == 1) {
-                        hardware = Hardware(
-                            hardware: "Monitor",
-                            contenido: contenido,
-                            observacion: observacionControllers[i].text);
-                      } else if (i == 2) {
-                        hardware = Hardware(
-                            hardware: "Teclado",
-                            contenido: contenido,
-                            observacion: observacionControllers[i].text);
-                      } else if (i == 3) {
-                        hardware = Hardware(
-                            hardware: "Mouse",
-                            contenido: contenido,
-                            observacion: observacionControllers[i].text);
-                      } else {
-                        hardware = Hardware(
-                            hardware: controllers[i].text,
-                            contenido: contenido,
-                            observacion: observacionControllers[i].text);
-                      }
-
-                      hardwareLista.add(hardware);
+                    if (i == 0) {
+                      hardware = Hardware(
+                          hardware: "Case",
+                          contenido: contenido,
+                          observacion: observacionControllers[i].text);
+                    } else if (i == 1) {
+                      hardware = Hardware(
+                          hardware: "Monitor",
+                          contenido: contenido,
+                          observacion: observacionControllers[i].text);
+                    } else if (i == 2) {
+                      hardware = Hardware(
+                          hardware: "Teclado",
+                          contenido: contenido,
+                          observacion: observacionControllers[i].text);
+                    } else if (i == 3) {
+                      hardware = Hardware(
+                          hardware: "Mouse",
+                          contenido: contenido,
+                          observacion: observacionControllers[i].text);
+                    } else {
+                      hardware = Hardware(
+                          hardware: controllers[i].text,
+                          contenido: contenido,
+                          observacion: observacionControllers[i].text);
                     }
-                    var jsonLista =
-                        hardwareLista.map((e) => e.toJson()).toList();
 
-                    Map<String, dynamic> registroMap = {
-                      'area': widget.area,
-                      'nombreMaquina': widget.nombreMaquina,
-                      'responsable': widget.responsable,
-                      'trabajador': widget.trabajador,
-                      'usuarioMaquina': widget.usuarioMaquina,
-                      'hardwareLista': jsonLista,
-                    };
+                    hardwareLista.add(hardware);
+                  }
+                  var jsonLista = hardwareLista.map((e) => e.toJson()).toList();
 
-                    String jsonString = json.encode(registroMap);
-                    print(jsonString);
-                    /*  dtRef.child("Hardware").push().set(registroMap).then(
+                  Map<String, dynamic> registroMap = {
+                    'area': widget.area,
+                    'nombreMaquina': widget.nombreMaquina,
+                    'responsable': widget.responsable,
+                    'trabajador': widget.trabajador,
+                    'usuarioMaquina': widget.usuarioMaquina,
+                    'hardwareLista': jsonLista,
+                  };
+
+                  String jsonString = json.encode(registroMap);
+                  print(jsonString);
+                  /*  dtRef.child("Hardware").push().set(registroMap).then(
                       (value) {
-                        
-                        
+                        Navigator.of(context).pop([jsonLista, hardwareLista]);
                       },
                     );*/
-                    Navigator.of(context).pop(jsonLista);
-                    FocusScope.of(context).unfocus();
-                  }
+                  Navigator.of(context).pop([jsonLista, hardwareLista]);
+                  FocusScope.of(context).unfocus();
                 },
               )
             ],
@@ -411,7 +437,11 @@ class _HardwareViewState extends State<HardwareView> {
       cardCampo2Controllers.add([]);
       patrimonialController.add(TextEditingController());
       procesadorController.add(TextEditingController());
+      modeloController.add(TextEditingController());
+      serieController.add(TextEditingController());
       marcaController.add(TextEditingController());
+      discoController.add(TextEditingController());
+      tarjetaController.add(TextEditingController());
       memoriaController.add(TextEditingController());
       observacionControllers.add(TextEditingController());
     });

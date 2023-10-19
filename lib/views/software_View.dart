@@ -2,7 +2,6 @@
 
 import 'package:app_inventario/models/software.dart';
 import 'package:app_inventario/views/widget/CampoFila.dart';
-import 'package:app_inventario/views/widget/botones.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/colores.dart';
@@ -36,7 +35,7 @@ class _SoftwareViewState extends State<SoftwareView> {
   TextEditingController antivirusController = TextEditingController();
   TextEditingController officeController = TextEditingController();
   TextEditingController autoCadController = TextEditingController();
-  Software software = Software();
+  Software? software;
   List<String> data = [];
   String x = "";
 
@@ -162,68 +161,21 @@ class _SoftwareViewState extends State<SoftwareView> {
                   backgroundColor: MaterialStateProperty.all<Color>(AzulApp),
                 ),
                 onPressed: () {
-                  if (widget.responsable.isEmpty ||
-                      widget.area.isEmpty ||
-                      widget.trabajador.isEmpty ||
-                      widget.nombreMaquina.isEmpty ||
-                      widget.usuarioMaquina.isEmpty) {
-                    String camposFaltantes = "";
+                  for (int i = 0; i < nuevoControllers.length; i++) {
+                    setState(() {
+                      x = "${navegadorControllers[i].text} : ${nuevoControllers[i].text}";
+                    });
+                    data.add(x);
+                  }
 
-                    if (widget.responsable.isEmpty) {
-                      camposFaltantes += 'Responsable, ';
-                    }
-                    if (widget.area.isEmpty) {
-                      camposFaltantes += 'Área, ';
-                    }
-                    if (widget.trabajador.isEmpty) {
-                      camposFaltantes += 'Trabajador, ';
-                    }
-                    if (widget.nombreMaquina.isEmpty) {
-                      camposFaltantes += 'Nombre de la Máquina, ';
-                    }
-                    if (widget.usuarioMaquina.isEmpty) {
-                      camposFaltantes += 'Usuario de la Máquina, ';
-                    }
-
-                    // Elimina la última coma y espacio
-                    camposFaltantes = camposFaltantes.substring(
-                        0, camposFaltantes.length - 2);
-
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Campo Vacío'),
-                          content: Text(
-                              'El campo "$camposFaltantes" no puede estar vacío.'),
-                          actions: <Widget>[
-                            ModernButton(
-                              text: "Ok",
-                              iconData: Icons.save,
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  } else {
-                    for (int i = 0; i < nuevoControllers.length; i++) {
-                      setState(() {
-                        x = "${navegadorControllers[i].text} : ${nuevoControllers[i].text}";
-                      });
-                      data.add(x);
-                    }
-
-                    software = Software(
-                      sistema: sOController.text,
-                      antivirus: antivirusController.text,
-                      office: officeController.text,
-                      autocad: autoCadController.text,
-                      extras: data.toString(),
-                    );
-                    /*Map<String, dynamic> datos = {
+                  software = Software(
+                    sistema: sOController.text,
+                    antivirus: antivirusController.text,
+                    office: officeController.text,
+                    autocad: autoCadController.text,
+                    extras: data.toString(),
+                  );
+                  /*Map<String, dynamic> datos = {
                       "responsable": widget.responsable,
                       "area": widget.area,
                       "trabajador": widget.trabajador,
@@ -232,10 +184,9 @@ class _SoftwareViewState extends State<SoftwareView> {
                       "datos": software.toJson()
                     };*/
 
-                    var datosObtenidos = software.toJson();
-                    Navigator.of(context).pop(datosObtenidos);
-                    FocusScope.of(context).unfocus();
-                  }
+                  var datosObtenidos = software!.toJson();
+                  Navigator.of(context).pop([datosObtenidos, software!]);
+                  FocusScope.of(context).unfocus();
                 },
                 child: const Text(
                   "Guardar",
@@ -275,10 +226,10 @@ class _SoftwareViewState extends State<SoftwareView> {
             child: TextField(
               inputFormatters: soloLetras,
               textCapitalization: TextCapitalization.characters,
-              controller: controller1,
-              decoration: InputDecoration(
-                labelText: campo /* $index*/,
-                border: const OutlineInputBorder(),
+              controller:  controller1,
+              decoration: const InputDecoration(
+                //labelText: campo /* $index*/,
+                border: OutlineInputBorder(),
               ),
             ),
           ),

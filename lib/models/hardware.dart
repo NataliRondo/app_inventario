@@ -48,38 +48,56 @@ class Contenido {
   String? patrimonial;
   String? procesador;
   String? campos;
+  String? modelo;
+  String? serie;
   String? marca;
   String? memoria;
+  String? disco;
+  String? tarjeta;
 
-  Contenido({
-    this.patrimonial,
-    this.procesador,
-    this.campos,
-    this.marca,
-    this.memoria,
-  });
+  Contenido(
+      {this.patrimonial,
+      this.procesador,
+      this.campos,
+      this.modelo,
+      this.serie,
+      this.disco,
+      this.marca,
+      this.memoria,
+      this.tarjeta});
 
   factory Contenido.fromJson(Map<dynamic, dynamic> json) => Contenido(
-        patrimonial: json["patrimonial"],
-        procesador: json["procesador"],
-        campos: json["campos"],
-        marca: json["marca"],
-        memoria: json["memoria"],
-      );
+      patrimonial: json["patrimonial"],
+      procesador: json["procesador"],
+      campos: json["campos"],
+      modelo: json["modelo"],
+      serie: json["serie"],
+      disco: json["disco"],
+      marca: json["marca"],
+      memoria: json["memoria"],
+      tarjeta: json["tarjeta"]);
 
   Contenido.fromJsons(Map<String, dynamic> json) {
     patrimonial = json["patrimonial"];
     procesador = json["procesador"];
     campos = json["campos"];
+    modelo = json["modelo"];
+    serie = json["serie"];
+    disco = json["disco"];
     marca = json["marca"];
     memoria = json["memoria"];
+    tarjeta = json["tarjeta"];
   }
 
   Map<String, dynamic> toJson() => {
         "patrimonial": patrimonial,
         "procesador": procesador,
         "campos": campos,
+        "modelo": modelo,
+        "serie": serie,
+        "disco": disco,
         "marca": marca,
         "memoria": memoria,
+        "tarjeta": tarjeta
       };
 }
